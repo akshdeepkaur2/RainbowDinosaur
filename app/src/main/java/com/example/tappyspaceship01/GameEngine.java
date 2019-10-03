@@ -1,6 +1,5 @@
 package com.example.tappyspaceship01;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,14 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.media.Image;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.Random;
 
 public class GameEngine extends SurfaceView implements Runnable {
@@ -139,7 +136,7 @@ int lives = 3;
     public void run() {
         while (gameIsRunning == true) {
             this.updatePositions();
-            this.redrawSprites();
+            this.redrawSprites(event);
             this.setFPS();
         }
     }
@@ -277,7 +274,7 @@ String playerIsMoving = "down"
         }
     }
 
-    public void redrawSprites() {
+    public void redrawSprites(MotionEvent event) {
         if (this.holder.getSurface().isValid()) {
             this.canvas = this.holder.lockCanvas();
 
