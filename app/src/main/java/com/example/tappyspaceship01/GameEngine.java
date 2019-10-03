@@ -64,9 +64,13 @@ Bitmap item1Image;
     Bitmap item2Image;
     Bitmap item3Image;
 
+    Item candy;
+    Item candy2;
+    Item Rainbow;
+    Item Rainbow2;
+    Item Poop;
+    Item Poop2;
 
-Item item2;
-Item item3;
 
 
 int lives = 3;
@@ -80,12 +84,7 @@ int lives = 3;
 
         this.screenWidth = w;
         this.screenHeight = h;
-        Item candy;
-        Item candy2;
-        Item Rainbow;
-        Item Rainbow2;
-        Item Poop;
-        Item Poop2;
+
         // creating array of item1
        ArrayList<Item>  candies = new ArrayList<Item>();
         ArrayList<Item> Rainbows= new ArrayList<Item>();
@@ -192,7 +191,53 @@ int lives = 3;
         poop.xPosition = poop.xPosition + (int)(xn * 5);
         poop.yPosition = poop.yPosition + (int)(yn * 5);
     }
+    public void spawnCandy() {
 
+        if (this.candy.size() < 10) { // NUMBER OF BULLETS
+            Item b;
+            if (this.candy.isEmpty()) {
+                b = new Item(getContext(), 100, 600, SQUARE_WIDTH);
+            } else {
+                // prev bullet
+                Item prevCandy = this.candy.get(this.candy.size() - 1);
+                int newCandyX = prevCandy.xPosition + 120;
+                b = new Item(getContext(), newCandyX, 600, SQUARE_WIDTH);
+            }
+            this.candy.add(b);
+        }
+
+    }
+    public void spawnRainbow() {
+
+        if (this.Rainbow.size() < 10) { // NUMBER OF BULLETS
+            Item b;
+            if (this.Rainbow.isEmpty()) {
+                b = new Item(getContext(), 200, 800, SQUARE_WIDTH);
+            } else {
+                // prev bullet
+                Item prevRainbow = this.Rainbow.get(this.candy.size() - 1);
+                int newRainbowX = prevRainbow.xPosition + 120;
+                b = new Item(getContext(), newRainbowX, 600, SQUARE_WIDTH);
+            }
+            this.Rainbow.add(b);
+        }
+
+    }public void spawnPoop() {
+
+        if (this.Poop.size() < 10) { // NUMBER OF BULLETS
+            Item b;
+            if (this.Poop.isEmpty()) {
+                b = new Item(getContext(), 100, 600, SQUARE_WIDTH);
+            } else {
+                // prev bullet
+                Item prevPoop = this.Poop.get(this.Poop.size() - 1);
+                int newPoopX = prevPoop.xPosition + 120;
+                b = new Item(getContext(), newPoopX, 600, SQUARE_WIDTH);
+            }
+            this.Poop.add(b);
+        }
+
+    }
 
     public void pauseGame() {
         gameIsRunning = false;

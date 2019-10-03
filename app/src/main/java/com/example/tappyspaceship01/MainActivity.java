@@ -8,15 +8,22 @@ import android.view.Display;
 public class MainActivity extends AppCompatActivity {
 
     GameEngine tappySpaceship;
+    Display display;
+    Point size;
+    int screenHeight;
+    int screenWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Get size of the screen
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
+        display = getWindowManager().getDefaultDisplay();
+        size = new Point();
+
         display.getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
 
         // Initialize the GameEngine object
         // Pass it the screen size (height & width)

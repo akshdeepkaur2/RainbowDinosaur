@@ -3,6 +3,7 @@ package com.example.tappyspaceship01;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.graphics.Rect;
 
 public class Item {
@@ -10,13 +11,14 @@ public class Item {
     // PROPERTIES:
     // Image
     // Hitbox
+    Point size;
     private Bitmap image;
     private Rect hitbox;
 
      int xPosition;
     int yPosition;
 
-    public Item(Context context, int x, int y) {
+    public Item(Context context, int i, int x, int y) {
         // 1. set up the initial position of the Enemy
         this.xPosition = x;
         this.yPosition = y;
@@ -67,4 +69,7 @@ public class Item {
     public void setyPosition(int yPosition) {
         this.yPosition = yPosition;
     }
+
+
+
 }
