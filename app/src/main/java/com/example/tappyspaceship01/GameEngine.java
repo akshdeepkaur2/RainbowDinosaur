@@ -1,5 +1,6 @@
 package com.example.tappyspaceship01;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,7 +60,12 @@ int playerXPositon;
 int playerYPosition;
 Rect playerHitbox;
 Bitmap item1Image;
-int item1X;
+    Bitmap item2Image;
+    Bitmap item3Image;
+
+
+Item item2;
+Item item3;
 
 
 int lives = 3;
@@ -73,12 +79,19 @@ int lives = 3;
         this.screenHeight = h;
         Item candy;
         Item candy2;
+        Item Rainbow1;
+        Item Rainbow2;
+        Item Poop1;
+        Item Poop2;
         // creating array of item1
-       ArrayList<Item> item1= new ArrayList<Item>();
+       ArrayList<Item>  candies = new ArrayList<Item>();
+        ArrayList<Item> Rainbows= new ArrayList<Item>();
+        ArrayList<Item> Poops= new ArrayList<Item>();
+
        int SQUARE_WIDTH = 100;
        this.item1Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.candy32);
-
-
+        this.item2Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.rainbow32);
+        this.item3Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.poop32);
         this.printScreenInfo();
         this.playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.dino32);
         this.playerXPositon = 1300;
