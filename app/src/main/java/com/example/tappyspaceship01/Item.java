@@ -71,5 +71,15 @@ public class Item {
     }
 
 
+    public Item get(int i) {
+        return null;
+    }
 
+    public int getWidth() {
+        return yPosition;
+    }
+
+    public double size() {
+        return 0;
+    }
 }

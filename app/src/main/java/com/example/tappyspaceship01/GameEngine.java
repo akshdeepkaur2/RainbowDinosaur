@@ -259,9 +259,22 @@ int lives = 3;
     // GAME ENGINE FUNCTIONS
     // - update, draw, setFPS
     // ------------------------------
-
+String playerIsMoving = "down"
+            String personTapped = ""
     public void updatePositions() {
 
+        Random r = new Random();
+        int randomXPos = r.nextInt(this.screenWidth) + 1;
+        int randomYPos = r.nextInt(this.screenHeight) + 1;
+        Item.x = randomXPos;
+        Item.y = randomYPos;
+        if (personTapped.contentEquals("down")){
+            this.playerYPosition = this.playerYPosition+100;
+
+        }
+        else if (personTapped.contentEquals("up")){
+            this.playerYPosition = this.playerYPosition-100;
+        }
     }
 
     public void redrawSprites() {
@@ -274,7 +287,16 @@ int lives = 3;
             this.canvas.drawColor(Color.argb(255,255,255,255));
             paintbrush.setColor(Color.WHITE);
 
-
+            // redraw the items
+            for (int i = 0; i < this.candy.size();i++) {
+                Item b = this.candy.get(i);
+                canvas.drawRect(
+                        b.getxPosition(),
+                        b.getyPosition(),
+                        b.getxPosition() + b.getWidth(),
+                        b.getyPosition() + b.getWidth(),
+                        paintbrush
+                );
             // DRAW THE PLAYER HITBOX
             // ------------------------
             // 1. change the paintbrush settings so we can see the hitbox
@@ -287,7 +309,7 @@ int lives = 3;
         }
     }
 
-    public void setFPS() {
+    public void setFPS();{
         try {
             gameThread.sleep(120);
         }
@@ -304,16 +326,40 @@ int lives = 3;
     String fingerAction = "";
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int userAction = event.getActionMasked();
-        //@TODO: What should happen when person touches the screen?
-        if (userAction == MotionEvent.ACTION_DOWN) {
+        public boolean onTouchEvent(MotionEvent event) {
+            int userAction = event.getActionMasked();
+            //@TODO: What should happen when person touches the screen?
+            // ---------------------------------------------------------
+            // Get position of the tap
+            // Compare position of tap to the middle of the screen
+            // If tap is on left, move racket Position to left
+            // If tap is on right, move racket position to right
 
+            if (userAction == MotionEvent.ACTION_DOWN) {
+                // user pushed down on screen
+
+                // 1. Get position of tap
+                float fingerXPosition = event.getX();
+                float fingerYPosition = event.getY();
+                Log.d(TAG, "Person's pressed: "
+                        + fingerXPosition + ","
+                        + fingerYPosition);
+
+
+                // 2. Compare position of tap to middle of screen
+                int middleOfScreen = this.screenHeight / 2;
+                if (fingerXPosition <= middleOfScreen) {
+                    // 3. If tap is on left, racket should go left
+                    personTapped = "up";
+                }
+                else if (fingerXPosition > middleOfScreen) {
+                    // 4. If tap is on right, racket should go right
+                    personTapped = "down";
+                }
+            }
+            else if (userAction == MotionEvent.ACTION_UP) {
+                // user lifted their finger
+            }
+            return ;
         }
-        else if (userAction == MotionEvent.ACTION_UP) {
-
-        }
-
-        return true;
-    }
-}
+}}
