@@ -79,9 +79,9 @@ int lives = 3;
         this.screenHeight = h;
         Item candy;
         Item candy2;
-        Item Rainbow1;
+        Item Rainbow;
         Item Rainbow2;
-        Item Poop1;
+        Item Poop;
         Item Poop2;
         // creating array of item1
        ArrayList<Item>  candies = new ArrayList<Item>();
@@ -92,6 +92,12 @@ int lives = 3;
        this.item1Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.candy32);
         this.item2Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.rainbow32);
         this.item3Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.poop32);
+        // Draw the candies
+
+
+
+
+
         this.printScreenInfo();
         this.playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.dino32);
         this.playerXPositon = 1300;
@@ -135,7 +141,21 @@ int lives = 3;
             this.setFPS();
         }
     }
+    public void moveCandy(Item candy) {
+        // @TODO:  Move the square
+        // 1. calculate distance between bullet and square
+        double a = (playerXPositon - candy.xPosition);
+        double b = (playerYPosition - candy.yPosition);
+        double distance = Math.sqrt((a*a) + (b*b)); // DISTANCE FORMULA = SQRT OF (2X)+(2Y) [ AS THE FIGURE IS SQUARE]
 
+        // 2. calculate the "rate" to move
+        double xn = (a / distance);
+        double yn = (b / distance);
+
+        // 3. move the bullet
+        candy.xPosition = candy.xPosition + (int)(xn * 5);
+        candy.yPosition = candy.yPosition + (int)(yn * 5);
+    }
 
     public void pauseGame() {
         gameIsRunning = false;
@@ -159,6 +179,7 @@ int lives = 3;
     // ------------------------------
 
     public void updatePositions() {
+
     }
 
     public void redrawSprites() {

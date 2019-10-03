@@ -13,8 +13,8 @@ public class Item {
     private Bitmap image;
     private Rect hitbox;
 
-    private int xPosition;
-    private int yPosition;
+     int xPosition;
+    int yPosition;
 
     public Item(Context context, int x, int y) {
         // 1. set up the initial position of the Enemy
