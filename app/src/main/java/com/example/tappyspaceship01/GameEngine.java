@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.Image;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -51,8 +52,14 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## GAME STATS
     // ----------------------------
+//adding rainbows
+Bitmap playerImage;
+int playerXPositon;
 
+int playerYPosition;
+Rect playerHitbox;
 
+int lives = 3;
     public GameEngine(Context context, int w, int h) {
         super(context);
 
@@ -63,6 +70,17 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.screenHeight = h;
 
         this.printScreenInfo();
+        this.playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.dino32);
+        this.playerXPositon = 1300;
+        this.playerYPosition  = 540;
+        // 1. draw a hitbox
+        this.playerHitbox = new Rect(1300,
+                540,
+                1300+playerImage.getWidth(),
+                540+playerImage.getHeight()
+        );
+
+
     }
 
 
@@ -71,6 +89,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         Log.d(TAG, "Screen (w, h) = " + this.screenWidth + "," + this.screenHeight);
     }
+
 
     private void spawnPlayer() {
         //@TODO: Start the player at the left side of screen
