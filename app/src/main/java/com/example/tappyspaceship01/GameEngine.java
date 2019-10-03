@@ -15,6 +15,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Random;
 
 public class GameEngine extends SurfaceView implements Runnable {
@@ -69,6 +70,8 @@ Item item3;
 
 
 int lives = 3;
+    int SQUARE_WIDTH = 100;
+
     public GameEngine(Context context, int w, int h) {
         super(context);
 
@@ -120,15 +123,15 @@ int lives = 3;
     }
 
 
-    private void spawnPlayer() {
+   // private void spawnPlayer() {
         //@TODO: Start the player at the left side of screen
-    }
-    private void spawnEnemyShips() {
-        Random random = new Random();
+   // }
+    //private void spawnEnemyShips() {
+       // Random random = new Random();
 
         //@TODO: Place the enemies in a random location
 
-    }
+   // }
 
     // ------------------------------
     // GAME STATE FUNCTIONS (run, stop, start)
@@ -156,6 +159,40 @@ int lives = 3;
         candy.xPosition = candy.xPosition + (int)(xn * 5);
         candy.yPosition = candy.yPosition + (int)(yn * 5);
     }
+
+    //move rainbow
+    public void moveRainbow(Item rainbow) {
+        // @TODO:  Move the square
+        // 1. calculate distance between bullet and square
+        double a = (playerXPositon - rainbow.xPosition);
+        double b = (playerYPosition - rainbow.yPosition);
+        double distance = Math.sqrt((a*a) + (b*b)); // DISTANCE FORMULA = SQRT OF (2X)+(2Y) [ AS THE FIGURE IS SQUARE]
+
+        // 2. calculate the "rate" to move
+        double xn = (a / distance);
+        double yn = (b / distance);
+
+        // 3. move the bullet
+        rainbow.xPosition = rainbow.xPosition + (int)(xn * 10);
+        rainbow.yPosition = rainbow.yPosition + (int)(yn * 10);
+    }
+    // move poop
+    public void movePoop(Item poop) {
+        // @TODO:  Move the square
+        // 1. calculate distance between bullet and square
+        double a = (playerXPositon - poop.xPosition);
+        double b = (playerYPosition - poop.yPosition);
+        double distance = Math.sqrt((a*a) + (b*b)); // DISTANCE FORMULA = SQRT OF (2X)+(2Y) [ AS THE FIGURE IS SQUARE]
+
+        // 2. calculate the "rate" to move
+        double xn = (a / distance);
+        double yn = (b / distance);
+
+        // 3. move the bullet
+        poop.xPosition = poop.xPosition + (int)(xn * 5);
+        poop.yPosition = poop.yPosition + (int)(yn * 5);
+    }
+
 
     public void pauseGame() {
         gameIsRunning = false;
