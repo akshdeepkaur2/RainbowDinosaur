@@ -58,6 +58,9 @@ int playerXPositon;
 
 int playerYPosition;
 Rect playerHitbox;
+Bitmap item1Image;
+int item1X;
+
 
 int lives = 3;
     public GameEngine(Context context, int w, int h) {
@@ -68,6 +71,13 @@ int lives = 3;
 
         this.screenWidth = w;
         this.screenHeight = h;
+        Item candy;
+        Item candy2;
+        // creating array of item1
+       ArrayList<Item> item1= new ArrayList<Item>();
+       int SQUARE_WIDTH = 100;
+       this.item1Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.candy32);
+
 
         this.printScreenInfo();
         this.playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.dino32);
